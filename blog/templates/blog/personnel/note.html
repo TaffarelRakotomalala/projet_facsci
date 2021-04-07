@@ -1,0 +1,216 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block 'titre1' %} Blog Perso {% endblock %}
+{% block 'style' %}
+    <link rel="stylesheet" href="{% static 'css/note.css' %}">
+{% endblock %}
+{% block 'body' %}
+<h5 style="margin-top:100px"><span><img src="{%static 'images/user_shield_32px.png' %}" alt="perso"></span><strong>PERSONNEL</strong></h5>
+<p><i>Votre Blog Personnel</i></p>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="bg-secondary" style="margin-top: 1%">
+        <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" id="txt" data-toggle="pill" href="#home">Mon Profil</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="txt" data-toggle="pill" href="#menu1">Mes Notes</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="txt" data-toggle="pill" href="#menu2">Mes fichiers</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+            <h3 class="text-secondary">Mon Profil</h3>
+            <div class="alert alert-info">
+                <strong>N.B!</strong> Vous ne pouvez changer que de l'avatar.
+            </div>
+            <div style="justify-content:center;display:flex;">
+                <img src="{{request.user.profil.avatar.url}}" alt="user.avatar" class="rounded-circle" style="width: 150px; height: 150px;">
+            </div>
+            <form class="form-floating row g-3" method="POST" enctype="multipart/form-data">
+                <div class="col-md-4">
+                    <label for="usr">Carte d'étudiant : </label>
+                    <input type="text" class="form-control" id="usr" placeholder="{{request.user.username}}" disabled>
+                </div>
+                <div class="col-md-4">
+                    <label for="nom">Nom :</label>
+                    <input type="text" class="form-control" id="nom" placeholder="{{request.user.last_name}}" disabled> 
+                </div>
+                <div class="col-md-4">
+                    <label for="prenom">Prénoms :</label>
+                    <input type="text" class="form-control" id="prenom" placeholder="{{request.user.first_name}}" disabled> 
+                </div>
+                <div class="col-md-4">
+                    <label for="parc">Parcours :</label>
+                    <input type="text" class="form-control" id="parc" placeholder="{{request.user.profil.parcour}}" disabled> 
+                </div>
+                <div class="col-md-4">
+                    <label for="mail">Mail :</label>
+                    <input type="email" class="form-control" id="mail" placeholder="{{request.user.email}}" disabled> 
+                </div>
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="col-md-4">
+                    {{field.label}}
+                    {{field}}
+                </div>
+                {% endfor %}
+                <input type="submit" value="Changer" class="btn btn-primary" style="margin-top:30px;">
+            </form>
+        </div>
+        <div id="menu1" class="container tab-pane fade"><br>
+        <h3 class="text-secondary">Mes Notes</h3>
+        <i class="text-secondary">Pour un smart phone: Glisser vers gauche pour voir d'autres notes</i>
+            <table class="table-responsive">
+                <thead>
+                    <tr>
+                        <th>Semestre</th>
+                        <th colspan="21">Unité d'enseignement</th>
+                        <th>Moyenne</th>
+                        <th>Validation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th rowspan="3">S7</th>
+                        <td colspan="3">Approximation</td>
+                        <td colspan="3">Théorie des jeux</td>
+                        <td colspan="3">Statistique</td>
+                        <td colspan="4">Informatique</td>
+                        <td colspan="4">Finance</td>
+                        <td colspan="4">Langue et Culture</td>
+                        <td rowspan="3">18</td>
+                        <td rowspan="3">Validé</td>
+                        <tr>
+                            <td>Approximation</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Théorie des jeux</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Statistique</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Java</td>
+                            <td>Graphe</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Marché Financières</td>
+                            <td>Finance d'Entreprise</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Anglais</td>
+                            <td>Droit</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                        </tr>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="table-responsive">
+                <thead>
+                    <tr>
+                        <th>Semestre</th>
+                        <th colspan="21">Unité d'enseignement</th>
+                        <th>Moyenne</th>
+                        <th>Validation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th rowspan="3">S7</th>
+                        <td colspan="3">Approximation</td>
+                        <td colspan="3">Théorie des jeux</td>
+                        <td colspan="3">Statistique</td>
+                        <td colspan="4">Informatique</td>
+                        <td colspan="4">Finance</td>
+                        <td colspan="4">Langue et Culture</td>
+                        <td rowspan="3">18</td>
+                        <td rowspan="3">Validé</td>
+                        <tr>
+                            <td>Approximation</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Théorie des jeux</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Statistique</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Java</td>
+                            <td>Graphe</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Marché Financières</td>
+                            <td>Finance d'Entreprise</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                            <td>Anglais</td>
+                            <td>Droit</td>
+                            <td>moyenne</td>
+                            <td>Validation</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>14</td>
+                            <td>14</td>
+                        </tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+        <div id="menu2" class="container tab-pane fade"><br>
+        <h3 class="text-secondary">Mes fichiers</h3>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

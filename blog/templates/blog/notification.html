@@ -1,0 +1,59 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block 'titre1' %} Notifications {% endblock %}
+{% block 'style' %} <link rel="stylesheet" href="{% static 'elegant/elegant.css' %}"> {% endblock %}
+{%block 'body'%}
+<h5 style="margin-top:100px"><strong><span data-icon="&#xe01e;" style="margin-right:5px"></span>NOTIFICATION</strong></h5>
+<p><i>Liste des notifications</i></p>
+
+<div class="bg-secondary" style="margin-top: 1%; margin-bottom:15px">
+   <div class="btn-group btn-group-justified">
+  <div class="btn-group">
+    <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown">
+       Trier par
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Date Croissant</a>
+      <a class="dropdown-item" href="#">Date Décroissant</a>
+    </div>
+  </div>
+  <a href="#" class="btn btn-secondary">Mes Forums</a>
+</div> 
+</div>
+
+
+  <div class="alert alert-success">
+  	<img src="{% static 'images/male_user_black_50px.png'%}" width="32px" >
+    <a href="#" class="alert-link">Rakoto a posté un nouveau forum !</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+  <div class="alert alert-info">
+  	<img src="{% static 'images/male_user_black_50px.png'%}" width="32px" >
+    <a href="#" class="alert-link">Rasoa a posté un nouveau fichier !</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+  <div class="alert alert-info">
+  	<img src="{% static 'images/male_user_black_50px.png'%}" width="32px" >
+    <a href="#" class="alert-link">Rasoa a posté un nouveau fichier !</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+  <div class="alert alert-warning">
+  	<img src="{% static 'images/note.png'%}" width="32px" >
+    <a href="#" class="alert-link">Une nouvelle résultat d'examen est disponible!</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+  <div class="alert alert-danger">
+  	<img src="{% static 'images/event.png'%}" width="32px" >
+    <a href="#" class="alert-link">Une nouvelle actualité est posté!</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+    <div class="alert alert-success">
+  	<img src="{% static 'images/male_user_black_50px.png'%}" width="32px" >
+    <a href="#" class="alert-link">Rakoto a posté un nouveau forum !</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+    <div class="alert alert-danger">
+  	<img src="{% static 'images/event.png'%}" width="32px" >
+    <a href="#" class="alert-link">Une nouvelle actualité est posté!</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+    <div class="alert alert-danger">
+  	<img src="{% static 'images/event.png'%}" width="32px" >
+    <a href="#" class="alert-link">Une nouvelle actualité est posté!</a> <i>[ 25 Fév 2021, 22:08 ]</i>
+  </div>
+  </div>
+
+{% endblock %} 

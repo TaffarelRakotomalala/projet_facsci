@@ -1,0 +1,61 @@
+#img_fac{
+    width: 15%;
+    height: 10%;
+}
+
+#img_profil{
+    margin-left: 42%;
+    width: 15%;
+}
+
+#formulaire{
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+#btn_login_submit{
+    margin-left: 250px;
+}
+
+.corps{
+    margin-top: 50px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Codystar:300&display=swap');
+
+#animation {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Codystar';
+}
+
+.neons {
+   text-align: center;
+}
+
+.neons h3 {
+  font-size: 180%;
+  text-align: center;
+   font-weight: bold;
+  -webkit-animation: glow 2s ease-in-out infinite alternate;
+  -moz-animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+     from {
+      color: #fff;
+    text-shadow: 0 0 10px #00fff2, 0 0 20px #00fff2, 0 0 30px #00fff2, 0 0 40px #00fff2, 0 0 50px #00fff2, 0 0 60px #00fff2, 0 0 70px #00fff2, 0 0 90px #00fff2;
+  }
+  
+  to {
+     color: gray;
+    text-shadow: 0 0 20px #00fff2, 0 0 30px #00fff2, 0 0 40px #00fff2, 0 0 50px #00fff2, 0 0 60px #00fff2, 0 0 70px #00fff2, 0 0 80px #00fff2, 0 1 90px #00fff2;
+  }
+}
+
+#insc{
+  background-color: rgb(82, 80, 79);
+  color: white;
+}

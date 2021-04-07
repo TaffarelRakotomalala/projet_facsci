@@ -1,0 +1,122 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block 'titre1' %} Note Physique et Application {% endblock %}
+
+{% block 'body' %}
+<div class="container-fluid" style="margin-top: 100px">
+    <div class="row justify-content-md-center">
+      <div class="col-lg-3">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> C.A.P </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../capl1">c.a.p L1</a>
+            <a class="dropdown-item" href="../capl2">c.a.p L2</a>
+            <a class="dropdown-item" href="../capl3">c.a.p L3</a>
+            <a class="dropdown-item" href="../capm1">c.a.p M1</a>
+            <a class="dropdown-item" href="../capm2">c.a.p M2</a>
+          </div>
+        </button>
+      </div>
+      <div class="col-lg-3">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> E.A.2.I </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../ea2il1">e.a.2.i L1</a>
+            <a class="dropdown-item" href="../ea2il2">e.a.2.i L2</a>
+            <a class="dropdown-item" href="../ea2il3">e.a.2.i L3</a>
+            <a class="dropdown-item" href="../ea2im1">e.a.2.i M1</a>
+            <a class="dropdown-item" href="../ea2im2">e.a.2.i M2</a>
+          </div>
+        </button>
+      </div>
+      <div class="col-lg-3">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> M.E.T </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../metl1">m.e.t L1</a>
+            <a class="dropdown-item" href="../metl2">m.e.t L2</a>
+            <a class="dropdown-item" href="../metl3">m.e.t L3</a>
+            <a class="dropdown-item" href="../metm1">m.e.t M1</a>
+            <a class="dropdown-item" href="../metm2">m.e.t M2</a>
+          </div>
+        </button>
+      </div>
+    <div class="col-sm-12">
+      <br>
+      <h2 class="text-center text-secondary">
+        {% block 'titre' %} 
+        <span><img src="{% static 'images/graduate_64px.png' %}" alt="note"></span>
+        Notes pour les étudiants du M.E.T
+        <span><img src="{% static 'images/student_male_64px.png' %}" alt="note1"></span>
+        {% endblock %}
+      </h2>
+    </div>
+    </div>
+    <br>
+    <h3 class="text-center text-secondary">{% block 'niveau' %} L1 S1 {% endblock %}</h3>
+    <div class="table-responsive-md">
+    <table class="table table-dark table-striped text-center">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>CE</th>
+        <th>Algebre lineaire</th>
+        <th>Algebre Generale</th>
+        <th>Analyse</th>
+        <th>Statistique</th>
+        <th>MTU</th>
+        <th>Français</th>
+        <th>Anglais</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>1234</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>1235</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>1236</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>1237</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

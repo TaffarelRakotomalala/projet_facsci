@@ -1,0 +1,106 @@
+{% load static %}
+<!Doctype html>
+<html lang="fr">
+  {% block 'head' %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/css1.css' %}">
+    <title>{% block 'titre1' %} Actualité {% endblock %}</title>
+    <link type="images/png" rel="shortcut icon" href="{% static 'images/FAC.PNG' %}">
+    {% block 'style' %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+          <div id="box1">
+              <div>
+                <span><img class="logobox1" src="{% static 'images/FAC.PNG' %}"></span>
+              </div>
+          </div>
+        <a class="navbar-brand" href="../accueil"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto"  style="margin-left: 60%">
+            <li class="nav-item active" data-toggle="tooltip" data-placement="bottom" title="Actualité">
+              <a class="nav-link" href="../actualite"><img src="{% static 'images/home_26px.png' %}"><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../note_perso">Personnel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../forum">Forum</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Notes </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="../missl1">Mathématique et Application</a>
+                <a class="dropdown-item" href="../bdl1">Science de la vie</a>
+                <a class="dropdown-item" href="../capl1">Physique et Application</a>
+                <a class="dropdown-item" href="#">Physique-Chimie</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../notification">Notifications</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../fichiers">Fichiers</a>
+            </li>
+            <!-- <li class="nav-item" href="#" data-toggle="tooltip" data-placement="bottom" title="Déconnecter">
+              <img src="{% static 'images/shutdown_32px.png' %}">
+            </li> -->
+          </ul>
+        </div>
+        <a href="../logout" data-toggle="tooltip" data-placement="bottom" title="Déconnecter"><img src="{% static 'images/shutdown_32px.png' %}"></a>
+        <img src="{{request.user.profil.avatar.url}}"  style="width: 50px; height: 50px;" class="rounded-circle">
+      </nav>
+{% endblock %}
+
+{% block 'body' %}
+
+{% endblock %}
+    {% block 'dynamisme' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="{% static './node_modules/jquery/dist/jquery.js' %}"></script>
+      <script src="{% static './node_modules/popper.js/dist/umd/popper.js' %}"></script>
+      <script src="{% static './node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
+      <script>
+        $(function () {
+          $("li, a").tooltip()
+        })
+      </script>
+    {% endblock %}
+    </div>
+{% block 'footer' %}
+<br><br><br>
+<footer class="py-1 bg-dark">
+  <div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p class="m-0 text-white">
+        <img src="{% static 'images/call.png' %}" alt="appel" class="rounded"><span> 034 27 931 75 | 034 46 620 41</span>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <p class="m-0 text-white">
+        <img src="{% static 'images/gmail_64px.png' %}" alt="mail" class="rounded" style="width: 32px;"><span> facsciences@gmail.com</span>
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p class="m-0 text-white">{{user.last_name}} {{user.first_name}}</p>
+    </div>
+  </div>
+  </div>
+</footer>
+{% endblock %}
+  </body>
+</html>

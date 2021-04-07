@@ -1,0 +1,51 @@
+{% load static %}
+<!Doctype html>
+<html lang="fr">
+  {% block 'head' %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+    <link type="images/png" rel="shortcut icon" href="{% static 'images/FAC.PNG' %}">
+    <title>{% block 'titre1' %} S'inscrire {% endblock %}</title>
+  </head>
+  {% endblock %}
+  <body>
+    {% block 'corps' %}
+    <div class="container">
+        <!-- <h3 class="text-secondary text-center" style="margin-top: 2%;">S'Inscrire</h3>
+          {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                  <div class="alert alert-danger">
+                    <strong>Erreur!</strong> Suivre l'instruction ci-dessus.
+                  </div>
+                {% endif %}
+            {% endfor %}
+          {% endif %}
+        <div class="row">
+            <div style="justify-content:center;display:flex; width: 90%; margin: 3%;">
+                <form class="form-floating row" method="POST" >
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="col-md-12" style="margin-top:1%">
+                            {{field.label}}
+                            <br>
+                            {{field}}
+                        </div>
+                    {% endfor %}
+                    <p>Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères « @ », « . », « + », « - » et « _ ».
+                    </p>
+                    <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px;">
+                </form>
+            </div>
+        </div> -->
+        <h3>Pour S'inscrire, veuillez contacter l'admin</h3>
+    </div>
+    {% endblock %}
+  </body>
+</html>

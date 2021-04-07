@@ -1,0 +1,92 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block 'titre1' %} Forum {% endblock %}
+{% block 'body' %}
+
+<h5 style="margin-top:100px"><span data-icon="&#x68;" style="margin-right:5px"></span><strong>FORUM</strong></h5>
+<p><i>Forums : Mention Mathématiques</i></p>
+
+<div class="bg-secondary" style="margin-top: 1%">
+   <div class="btn-group btn-group-justified">
+  <a href="#" class="btn btn-secondary">Nouveau</a>
+  <div class="btn-group">
+    <button type="button" class="btn btn-secondary dropdown-toggle active" data-toggle="dropdown">
+       Liste des Forums
+    </button>
+    <div class="dropdown-menu">
+    	<h5 class="dropdown-header"><i>Filtrer par :</i></h5>
+      <a class="dropdown-item" href="#">Mention Mathématiques</a>
+      <a class="dropdown-item" href="#">Mention Physiques</a>
+      <a class="dropdown-item" href="#">Mention Science de la vie</a>
+      <a class="dropdown-item" href="#">Toute mentions</a>
+    </div>
+  </div>
+  <a href="#" class="btn btn-secondary">Mes Forums</a>
+</div> 
+</div>
+
+<div class="card" style="margin-top:1%">
+<div class="card-header">
+	<div class="media">
+  <div class="media-left media-middle">
+    <img class="rounded-circle" src="{% static 'images/avatar.jpg'%}" width="60px">
+  </div>
+  <div class="media-body" style="margin-left:5px">
+    <h5 class="media-heading">Rakoto - L3 miss</h5>
+    <p class="text-secondary"><i>posté le : 22 Fév 2021</i></p>
+  </div>
+</div>
+</div>
+  <div class="card-body">
+    <h4 class="card-title">Sujet Forum</h4>
+    <p class="card-text">Some example text. Some example text. rferfref eferfererferf erferferfer ferfre</p>
+    <a href="#" class="card-link">Afficher</a>
+    <a href="#" class="card-link">Répondre</a>
+    <span class="card-link text-secondary"><i>[5 réponses]</i></span>
+  </div>
+</div>
+
+<p style="margin-top:1%"><i>Réponses :</i></p>
+
+<div class="card" style="margin-bottom:1%">
+  <div class="card-body">
+    <h5 class="card-title"><img class="rounded-circle" src="{% static 'images/avatar.jpg'%}" width="32px"  style="margin-right:5px">Rakoto - L3 MF</h5>
+    <p class="card-text">>  Some example text. Some example text. rferfref eferfererferf erferferfer ferfre</p>
+    <span class="card-link text-secondary"><i>Réponse du : 22 Fév 2021</i></span>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:1%">
+  <div class="card-body">
+    <h5 class="card-title"><img class="rounded-circle" src="{% static 'images/avatar.jpg'%}" width="32px"  style="margin-right:5px">Rakoto - L3 MF</h5>
+    <p class="card-text">>  Some example text. Some example text. rferfref eferfererferf erferferfer ferfre</p>
+    <span class="card-link text-secondary"><i>Réponse du : 22 Fév 2021</i></span>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:1%">
+  <div class="card-body">
+    <h5 class="card-title"><img class="rounded-circle" src="{% static 'images/avatar.jpg'%}" width="32px"  style="margin-right:5px">Rakoto - L3 MF</h5>
+    <p class="card-text">>  Some example text. Some example text. rferfref eferfererferf erferferfer ferfre</p>
+    <span class="card-link text-secondary"><i>Réponse du : 22 Fév 2021</i></span>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:1%">
+  <div class="card-body">
+  {% if envoi %}
+<div class="alert alert-success alert-dismissable" style="margin-top:10px">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Réponse posté!</strong> avec succés</div>
+{% endif %}
+    <form action="{% url "reponse" %}" method="post" style="margin-top:15px">
+    {% csrf_token %}
+    {{ formReponse.as_p }}
+    <input type="submit" value="Répondre" class="btn btn-primary"/>
+</form>
+  </div>
+</div>
+
+
+
+{% endblock %}

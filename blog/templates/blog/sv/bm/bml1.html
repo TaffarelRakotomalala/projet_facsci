@@ -1,0 +1,110 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block 'titre1' %} Note Science de la vie {% endblock %}
+
+{% block 'body' %}
+<div class="container-fluid" style="margin-top: 100px">
+    <div class="row justify-content-md-center">
+      <div class="col-lg-2">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> Biologie Diversité </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../bdl1">b.d L1</a>
+            <a class="dropdown-item" href="../bdl2">b.d L2</a>
+            <a class="dropdown-item" href="../bdl3">b.d L3</a>
+            <a class="dropdown-item" href="../bdm1">b.d M1</a>
+            <a class="dropdown-item" href="../bdm2">b.d M2</a>
+          </div>
+        </button>
+      </div>
+      <div class="col-lg-2">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> Biologie Moleculaire </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../bml1">b.m L1</a>
+            <a class="dropdown-item" href="../bml2">b.m L2</a>
+            <a class="dropdown-item" href="../bml3">b.m L3</a>
+            <a class="dropdown-item" href="../bmm1">b.m M1</a>
+            <a class="dropdown-item" href="../bmm2">b.m M2</a>
+          </div>
+        </button>
+      </div>
+    <div class="col-sm-12">
+      <br>
+      <h2 class="text-center text-secondary">
+        {% block 'titre' %} 
+        <span><img src="{% static 'images/graduate_64px.png' %}" alt="note"></span>
+        Notes pour les étudiants du B.M
+        <span><img src="{% static 'images/student_male_64px.png' %}" alt="note1"></span>
+        {% endblock %}
+      </h2>
+    </div>
+    </div>
+    <br>
+    <h3 class="text-center text-secondary">{% block 'niveau' %} L1 S1 {% endblock %}</h3>
+    <div class="table-responsive-md">
+    <table class="table table-dark table-striped text-center">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>CE</th>
+        <th>Algebre lineaire</th>
+        <th>Algebre Generale</th>
+        <th>Analyse</th>
+        <th>Statistique</th>
+        <th>MTU</th>
+        <th>Français</th>
+        <th>Anglais</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>1234</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>1235</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>1236</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>1237</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

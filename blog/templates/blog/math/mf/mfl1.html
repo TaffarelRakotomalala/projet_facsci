@@ -1,0 +1,122 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block 'titre1' %} Note Mathématique {% endblock %}
+
+{% block 'body' %}
+<div class="container-fluid" style="margin-top: 100px">
+    <div class="row justify-content-md-center">
+      <div class="col-lg-3">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> Mathématiques et informatiques </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../missl1">m.i.s.s L1</a>
+            <a class="dropdown-item" href="../missl2">m.i.s.s L2</a>
+            <a class="dropdown-item" href="../missl3">m.i.s.s L3</a>
+            <a class="dropdown-item" href="../missm1">m.i.s.s M1</a>
+            <a class="dropdown-item" href="../missm2">m.i.s.s M2</a>
+          </div>
+        </button>
+      </div>
+      <div class="col-lg-3">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> Mathématiques Fondamentales </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../mfl1">m.f L1</a>
+            <a class="dropdown-item" href="../mfl2">m.f L2</a>
+            <a class="dropdown-item" href="../mfl3">m.f L3</a>
+            <a class="dropdown-item" href="../mfm1">m.f M1</a>
+            <a class="dropdown-item" href="../mfm2">m.f M2</a>
+          </div>
+        </button>
+      </div>
+      <div class="col-lg-3">
+        <button class=" btn btn-secondary nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;"> Mathématiques Economiques </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../mel1">m.e L1</a>
+            <a class="dropdown-item" href="../mel2">m.e L2</a>
+            <a class="dropdown-item" href="../mel3">m.e L3</a>
+            <a class="dropdown-item" href="../mem1">m.e M1</a>
+            <a class="dropdown-item" href="../mem2">m.e M2</a>
+          </div>
+        </button>
+      </div>
+    <div class="col-sm-12">
+      <br>
+      <h2 class="text-center text-secondary">
+        {% block 'titre' %} 
+        <span><img src="{% static 'images/graduate_64px.png' %}" alt="note"></span>
+        Notes pour les étudiants du M.F
+        <span><img src="{% static 'images/student_male_64px.png' %}" alt="note1"></span>
+        {% endblock %}
+      </h2>
+    </div>
+    </div>
+    <br>
+    <h3 class="text-center text-secondary">{% block 'niveau' %} L1 S1 {% endblock %}</h3>
+    <div class="table-responsive-md">
+    <table class="table table-dark table-striped text-center">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>CE</th>
+        <th>Algebre lineaire</th>
+        <th>Algebre Generale</th>
+        <th>Analyse</th>
+        <th>Statistique</th>
+        <th>MTU</th>
+        <th>Français</th>
+        <th>Anglais</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>1234</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>1235</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>1236</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>1237</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+
+{% endblock %}

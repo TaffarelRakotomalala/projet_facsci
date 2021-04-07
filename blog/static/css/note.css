@@ -1,0 +1,38 @@
+table {
+    border:3px solid #505052;
+    border-collapse:collapse;
+    width:90%;
+    margin:auto;
+    text-align: center;
+}
+thead, tfoot {
+    background-color:#3a676d;
+    background-image:url(sky.jpg);
+    border:1px solid #505052;
+}
+tbody {
+    background-color:#FFFFFF;
+    border:1px solid #505052;
+}
+th {
+    font-family:monospace;
+    border:1px dotted #505052;
+    padding:5px;
+    background-color:#EFF6FF;
+    width:25%;
+}
+td {
+    font-family:sans-serif;
+    font-size:80%;
+    border:1px solid #505052;
+    padding:5px;
+}
+.nav-pills .nav-link.active{
+    background-color: #5a5c5cfd;
+}
+#txt{
+    color:white;
+}
+#txt.active{
+    color:white;
+}
