@@ -6,5 +6,6 @@ admin.site.register(Profil)
 admin.site.register(Matieres)
 admin.site.register(Note)
 admin.site.register(MoyenneUser)
+admin.site.register(inscription)
 
 # Register your models here.

@@ -15,18 +15,17 @@
         <p>Cliquez<a href="../login"> Ici </a>pour se connecter</p>
     {%endif%}
     <p>{{a}}</p>
-    <div class="row">
+    <div class="row" style=" border: 1px solid black">
         <div style="justify-content:center;display:flex; width: 90%; margin: 3%;">
             <form class="form-floating row" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                    <div class="col-md-12" style="margin-top:1%">
+                    <div class="col-md-12" style="margin-top:1%;">
                         {{field.label}}
                         <br>
                         {{field}}
                     </div>
                 {% endfor %}
-                <p>Requis. 150 caractères maximum. Uniquement des lettres, nombres et les caractères « @ », « . », « + », « - » et « _ ».
                 </p>
                 <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px;">
             </form>

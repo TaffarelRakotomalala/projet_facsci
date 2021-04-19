@@ -25,9 +25,9 @@ def signup(request):
 
 def signup1(request):
     sauvegarde = False
-    form = UserForm1()
+    form = InscriptionForm()
     if request.method == 'POST':
-        form = UserForm1(request.POST)
+        form = InscriptionForm(request.POST)
         if form.is_valid:
             form.save()
             hafatra(request)

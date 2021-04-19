@@ -5,6 +5,22 @@ parcours = (('MISS','MISS'),
             ('MF', 'MF'),
             ('ME', 'ME'),
             )
+mention = (('MA', 'Mathematique et Application'),
+            ('PC', 'Physique Chimie'),
+            ('PA', 'Physique Application'),
+            ('SV', 'Science de la vie'),
+            )
+class inscription(models.Model):
+    Carte_etudiant = models.CharField(max_length = 4, verbose_name = u"Carte d'étudiant")
+    Nom = models.CharField(max_length = 20)
+    Prenom = models.CharField(max_length = 50, verbose_name =  "Prénom")
+    Mention = models.CharField(max_length=30, choices = mention, help_text = u"Choisir votre mention")
+    Parcour = models.CharField(max_length=30, choices = parcours, help_text = u"Choisir votre parcours")
+    mail = models.EmailField(verbose_name = "Email")
+    phone = models.CharField(max_length = 10) #min_length?
+
+    def __str__(self):
+        return str(self.Nom) + " " +  str(self.Prenom)
 
 
 class Profil(models.Model):
