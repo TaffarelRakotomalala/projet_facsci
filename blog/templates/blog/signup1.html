@@ -1,7 +1,8 @@
 {% extends 'blog/signup.html'%}
+{% load static %}
 {% block 'corps' %}
-<div class="container">
-    <h3 class="text-secondary text-center" style="margin-top: 2%;">S'Inscrire</h3>
+<div class="container" style="background-color: black;">
+    <h3 class="text-secondary text-center" style="margin-top: 2%;"><img src="{%static 'images/inscription_32px.png' %}" alt="inscri">Inscription</h3>
     {% if messages %}
         {% for message in messages %}
             {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
@@ -12,24 +13,26 @@
         {% endfor %}
     {% endif %}
     {% if sauvegarde == True %}
+        <div class="alert alert-info">
+            <strong>N.B:</strong> Dans un instant, votre identité sera envoyé par sms et après vouz pouvez se connecter.
+        </div>
         <p>Cliquez<a href="../login"> Ici </a>pour se connecter</p>
     {%endif%}
     <p>{{a}}</p>
-    <div class="row" style=" border: 1px solid black">
+    <div class="row" style="border: 1px solid black; border-radius: 10px; margin: 5%;">
         <div style="justify-content:center;display:flex; width: 90%; margin: 3%;">
             <form class="form-floating row" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                    <div class="col-md-12" style="margin-top:1%;">
+                    <div class="col-md-6" style="margin-top:1%;">
                         {{field.label}}
                         <br>
                         {{field}}
                     </div>
                 {% endfor %}
-                </p>
+                <br>
                 <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px;">
             </form>
-            {{form.errors}}
         </div>
     </div>
 </div>

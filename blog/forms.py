@@ -67,12 +67,15 @@ class InscriptionForm(ModelForm):
 		model = inscription
 		fields = '__all__'
 
+
 		widgets={
 			'Carte_etudiant':forms.TextInput(attrs={'placeholder':"Votre numero de Carte d'étudiant", 'class':'form-control'}),
 			'Nom':forms.TextInput(attrs={'placeholder':"Votre Nom", 'class':'form-control'}),
 			'Prenom':forms.TextInput(attrs={'placeholder':"Votre Prénoms", 'class':'form-control'}),
+			'Mention':forms.Select(attrs={'class':'form-control'}),
+			'Parcour':forms.Select(attrs={'class':'form-control'}),
 			'mail':forms.EmailInput(attrs={'placeholder':"Votre compte mail", 'class':'form-control'}),
-			'phone':forms.TextInput(attrs={'placeholder':"Votre numero téléphone", 'class':'form-control'}),
+			'phone':forms.NumberInput(attrs={'placeholder':"Votre numero téléphone", 'class':'form-control', 'id':'numberform'}),
 		}
 
 

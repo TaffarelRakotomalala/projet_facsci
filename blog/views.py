@@ -14,26 +14,30 @@ def hafatra(request):
 
 
 
+# def signup(request):
+#     form = UserForm()
+#     if request.method == 'POST':
+#         form = UserForm(request.POST)
+#         if form.is_valid:
+#             form.save()
+#             return redirect(signup1)
+#     return render(request, 'blog/signup.html', locals())
 def signup(request):
-    form = UserForm()
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect(signup1)
-    return render(request, 'blog/signup.html', locals())
-
-def signup1(request):
     sauvegarde = False
+    erreur = False
     form = InscriptionForm()
     if request.method == 'POST':
         form = InscriptionForm(request.POST)
-        if form.is_valid:
-            form.save()
-            hafatra(request)
-            sauvegarde = True
-            return render(request, 'blog/signup1.html', locals())
-    return render(request, 'blog/signup1.html', locals())
+        try:
+            if form.is_valid:
+                form.save()
+                hafatra(request)
+                sauvegarde = True
+                return render(request, 'blog/signup.html', locals())
+        except ValueError:
+            erreur = True
+            return render(request, 'blog/signup.html', locals())
+    return render(request, 'blog/signup.html', locals())
 
 
 
