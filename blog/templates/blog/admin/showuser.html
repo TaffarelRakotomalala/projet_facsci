@@ -1,0 +1,52 @@
+{% extends 'blog/signup.html' %}
+{% load static %}
+{% block 'titre1'%} Utilisateur {% endblock %}
+{% block 'css' %} 
+    <link rel="stylesheet" href="{% static 'css/note.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+{% block 'anim' %}
+<div class="anim">
+    <span><img src="{% static 'images/inscription_32px.png' %}"></span>
+    <span style="--i:1">L</span> 
+    <span style="--i:2">i</span>
+    <span style="--i:3">s</span>
+    <span style="--i:4">t</span>
+    <span style="--i:5">e</span>
+    <span style="--i:6"> </span>
+    <span style="--i:7">d</span>
+    <span style="--i:8">e</span>
+    <span style="--i:9">s</span>
+    <span style="--i:10"> </span>
+    <span style="--i:12">é</span>
+    <span style="--i:13">t</span>
+    <span style="--i:14">u</span>
+    <span style="--i:15">d</span>
+    <span style="--i:16">i</span>
+    <span style="--i:17">a</span>
+    <span style="--i:18">n</span>
+    <span style="--i:19">t</span>
+</div>
+
+{% endblock %}
+{% block 'formulaire' %}
+    <table>
+      <thead>
+        <tr>
+          <th>Carte d'étudiant</th>
+          <th>Nom</th>
+          <th>Prénoms</th>
+        </tr>
+      </thead>
+      {% for i in userliste %}
+      <tbody>
+        <tr>
+            <td><a href="{% url 'registernote' i.username %}">{{i.username}}</a></td>
+            <td>{{i.last_name}}</td>
+            <td>{{i.first_name}}</td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+
+{% endblock %}

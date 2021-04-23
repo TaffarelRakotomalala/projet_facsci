@@ -9,65 +9,78 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    {% block 'css' %}<link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
     <link type="images/png" rel="shortcut icon" href="{% static 'images/FAC.PNG' %}">
     <title>{% block 'titre1' %} S'inscrire {% endblock %}</title>
-    <style>
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-    </style>
   </head>
   {% endblock %}
   <body style="background-image: url('../static/images/SpringBreak-CSTM.jpg');">
     {% block 'corps' %}
     <div class="container">
-        <h1 class="text-center" style="margin-top: 2%; color: white; font-family: monospace; text-shadow:4px 5px 7px rgb(5, 5, 5);"><img src="{%static 'images/inscription_32px.png' %}" alt="inscri">
-            Inscription
-        </h1>
-      {% if messages %}
-          {% for message in messages %}
-              {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-              <div class="alert alert-success">
-                  <strong>Succès!</strong> {{message}}
-              </div>
-              {% endif %}
-          {% endfor %}
-      {% endif %}
-      {% if sauvegarde == True %}
-          <div class="alert alert-info">
-              <strong>N.B:</strong> Dans un instant, votre identité sera envoyé par sms et après vous pouvez se connecter.
-          </div>
-          <div class="alert alert-info">
-            <p>Cliquez<a href="../login"> <strong>Ici</strong></a> pour se connecter</p>
-          </div>
-      {%endif%}
-      <p>{{a}}</p>
-      {% if erreur == True %}
-          <div class="alert alert-danger">
-              <strong>Erreur :( </strong> Votre CE est déja utilisé ou votre numero est incorrecte (max 10 et min 10)
-          </div>
-      {%endif%}
-      <p>{{a}}</p>
-      <div class="row" style="border: 1px solid black; border-radius: 10px; margin: 5%; background-color: white;">
-          <div style="justify-content:center;display:flex; width: 90%; margin: 3%;">
-              <form class="form-floating row" method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {% for field in form %}
-                      <div class="col-md-6" style="margin-top:1%;">
-                          {{field.label}}
-                          <br>
-                          {{field}}
-                      </div>
-                  {% endfor %}
-                  <br>
-                  <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px; margin-left: 5%;">
-              </form>
-          </div>
-      </div>
+        <div class="text-center">
+            <img src="{% static 'images/FAC.PNG' %}" alt="Logo Sciences" class="rounded-circle" style="width: 64px; height: 64px; margin-top: 2%;">
+        </div>
+        {% block 'anim' %}
+        <div class="anim" style="margin-bottom: 10%;">
+            <span><img src="{% static 'images/inscription_32px.png' %}"></span>
+            <span style="--i:1">I</span> 
+            <span style="--i:2">n</span>
+            <span style="--i:3">s</span>
+            <span style="--i:4">c</span>
+            <span style="--i:5">r</span>
+            <span style="--i:6">i</span>
+            <span style="--i:7">p</span>
+            <span style="--i:8">t</span>
+            <span style="--i:9">i</span>
+            <span style="--i:10">o</span>
+            <span style="--i:11">n</span>
+        </div>
+        {% endblock %}
+        
+        {% block 'message' %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success">
+                        <strong>Succès!</strong> {{message}}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if sauvegarde == True %}
+                <div class="alert alert-info">
+                    <strong>N.B:</strong> Dans un instant, votre identité sera envoyé par sms et après vous pouvez se connecter.
+                </div>
+                <div class="alert alert-info">
+                    <p>Cliquez<a href="../login"> <strong>Ici</strong></a> pour se connecter</p>
+                </div>
+            {%endif%}
+            <p>{{a}}</p>
+            {% if erreur == True %}
+                <div class="alert alert-danger">
+                    <strong>Erreur :( </strong> Votre CE est déja utilisé ou votre numero est incorrecte (max 10 et min 10)
+                </div>
+            {%endif%}
+
+        {% endblock %}
+        <div class="row" style="border: 1px solid black; border-radius: 10px; margin: 5%; background-color: white;">
+            <div style="justify-content:center;display:flex; width: 90%; margin: 3%;">
+                {% block 'formulaire' %}
+                <form class="form-floating row" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="col-md-6" style="margin-top:1%;">
+                            {{field.label}}
+                            <br>
+                            {{field}}
+                        </div>
+                    {% endfor %}
+                    <br>
+                    <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px; margin-left: 5%;">
+                </form>
+                {% endblock %}
+            </div>
+        </div>
     </div>
     {% endblock %}
   </body>

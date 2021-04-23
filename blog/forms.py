@@ -75,8 +75,28 @@ class InscriptionForm(ModelForm):
 			'Mention':forms.Select(attrs={'class':'form-control'}),
 			'Parcour':forms.Select(attrs={'class':'form-control'}),
 			'mail':forms.EmailInput(attrs={'placeholder':"Votre compte mail", 'class':'form-control'}),
-			'phone':forms.NumberInput(attrs={'placeholder':"Votre numero téléphone", 'class':'form-control', 'id':'numberform'}),
+			'phone':forms.NumberInput(attrs={'placeholder':"Votre numero téléphone", 'class':'form-control','style':'-webkit-appearance: none; margin:0;'}),
 		}
+
+class EnregistrerNote(ModelForm):
+	class Meta:
+		model = Note_User
+		fields = '__all__'
+		exclude = ['Validation_UE', 'Validation_Semestre']
+
+		widgets={
+			'Semestre':forms.Select(attrs={'class':'form-control'}),
+			'Nom_UE':forms.TextInput(attrs={'placeholder':"Nom de l'unité", 'class':'form-control'}),
+			'Nom_Mat':forms.TextInput(attrs={'placeholder':"Nom de la Matiere", 'class':'form-control'}),
+			'Note':forms.NumberInput(attrs={'placeholder':'Note de la matieres','class':'form-control'}),
+			'Poids_Mat':forms.NumberInput(attrs={'placeholder':'Poids de la matieres','class':'form-control'}),
+		}
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields["Us"].widget.attrs['class'] = 'form-control'
+		self.fields["Us"].widget.attrs['placeholder'] = '{{pk}}'
+
 
 
         

@@ -5,6 +5,8 @@ urlpatterns = [
     path('login/', login_user),
     path('logout', logout_user),
     path('signup/', signup),
+    path('showuser/', ShowUser),
+    path('registernote/<str:pk>', RegisterNote, name ='registernote'),
     path('actualite/', main),
     path('note_perso/', note_perso),
     path('forum/',afficherForum),

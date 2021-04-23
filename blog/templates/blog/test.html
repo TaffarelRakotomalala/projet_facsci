@@ -9,9 +9,8 @@ border-collapse:collapse;
 width:90%;
 margin:auto;
 }
-thead, tfoot {
+thead{
 background-color:#D0E3FA;
-background-image:url(sky.jpg);
 border:1px solid grey;
 }
 tbody {
@@ -36,59 +35,113 @@ caption {
 font-family:sans-serif;
 }
 </style>
-<table summary="liste de quelques articles publiés
-sur OpenWeb regroupés par auteurs (en ligne) et niveaux (en colonne)" class="table-responsive">
-
-<caption>
-Présentation de quelques articles publiés sur OpenWeb
-</caption>
-
+<table>
   <thead>
     <tr>
-     <th></th>
-     <th>Débutants</th>
-     <th>Experts</th>
-     <th>Gourous</th>
+      <th>Semestre</th>
+      <th>Unité d'enseignement</th>
+      <th>Matiere</th>
+      <th>Note</th>
+      <th>Poids</th>
     </tr>
   </thead>
-
-  <tfoot>
-    <tr>
-     <th></th>
-     <th>Débutants</th>
-     <th>Experts</th>
-     <th>Gourous</th>
-    </tr>
-  </tfoot>
-
+  {% for i in noty %}
   <tbody>
     <tr>
-     <th rowspan="2">Tristan Nitot</th>
-     <td colspan="2">Introduction à l'accessibilité</td>
-     <td></td>
-    </tr>
-    <tr>
-     <td colspan="3">Interview de Chantal Laplanche, Responsable
-	Accessibilité Web au Ministère de la Culture</td>
-    </tr>
-   </tbody>
-
-   <tbody>
-    <tr>
-     <th rowspan="2">Laurent Denis</th>
-     <td>Un exemple de feuille de style
-	 d'impression</td>
-     <td></td>
-     <td></td>
-    </tr>
-    <tr>
-     <td></td>
-     <td colspan="2">Commenter le document de travail
-	W3CXHTML 2</td>
+      <td>{{i.Semestre}}</td>
+      <td> {{i.Nom_UE}}</td>
+      <td>{{i.Nom_Mat}}</td>
+      <td>{{i.Note}}</td>
+      <td>{{i.Poids_Mat}}</td>
     </tr>
   </tbody>
-
+  {% endfor %}
+</table>
+<br><br>
+<table>
+  <thead>
+    <tr>
+      <th>Unité d'enseignement</th>
+      <th>Validation</th>
+    </tr>
+  </thead>
+  {% for i in noty %}
+  <tbody>
+    <tr>
+      <td> {{i.Nom_UE}}</td>
+      <td>{{i.Validation_UE}}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
 </table>
 </div>
+
+
+<br><br>
+<table class="table-responsive">
+  <thead>
+      <tr>
+          <th>Semestre</th>
+          <th colspan="21">Unité d'enseignement</th>
+          <th>Moyenne</th>
+          <th>Validation</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <th rowspan="3">S7</th>
+          {% for i in note %}
+            <td>{{i.Nom_UE}}</td>
+          {% endfor %}
+          <tr>
+              <td>Approximation</td>
+              <td>moyenne</td>
+              <td>Validation</td>
+              <td>Théorie des jeux</td>
+              <td>moyenne</td>
+              <td>Validation</td>
+              <td>Statistique</td>
+              <td>moyenne</td>
+              <td>Validation</td>
+              <td>Java</td>
+              <td>Graphe</td>
+              <td>moyenne</td>
+              <td>Validation</td>
+              <td>Marché Financières</td>
+              <td>Finance d'Entreprise</td>
+              <td>moyenne</td>
+              <td>Validation</td>
+              <td>Anglais</td>
+              <td>Droit</td>
+              <td>moyenne</td>
+              <td>Validation</td>
+          </tr>
+          <tr>
+              <td>12</td>
+              <td>12</td>
+              <td>12</td>
+              <td>12</td>
+              <td>14</td>
+              <td>14</td>
+              <td>14</td>
+              <td>14</td>
+              <td>14</td>
+              <td>14</td>
+              <td>12</td>
+              <td>12</td>
+              <td>12</td>
+              <td>12</td>
+              <td>14</td>
+              <td>14</td>
+              <td>14</td>
+              <td>12</td>
+              <td>14</td>
+              <td>14</td>
+              <td>14</td>
+          </tr>
+      </tr>
+  </tbody>
+</table>
+
 
 {% endblock %}

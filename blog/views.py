@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import *
+from .models import *
 from django.contrib import messages
 from django.http import HttpResponse, Http404
 from django.contrib.auth import login, logout, authenticate
@@ -22,6 +23,9 @@ def hafatra(request):
 #             form.save()
 #             return redirect(signup1)
 #     return render(request, 'blog/signup.html', locals())
+
+
+#-------- Inscription ----------
 def signup(request):
     sauvegarde = False
     erreur = False
@@ -40,7 +44,31 @@ def signup(request):
     return render(request, 'blog/signup.html', locals())
 
 
+#----------Pour l'admin ------------
+def ShowUser(request):
+    userliste = User.objects.filter(is_staff = False).order_by('username')
+    return render(request, "blog/admin/showuser.html", locals())
 
+#---------- Registre Note -----------
+def RegisterNote(request, pk):
+    erreur = False
+    success = False
+    #util = Note_User.objects.get(id = pk)
+    form = EnregistrerNote()
+    if request.method == 'POST':
+        form = EnregistrerNote(request.POST)
+        try:
+            if form.is_valid:
+                form.save()
+                success = True
+                return render(request, 'blog/admin/registernote.html', locals())
+        except:
+            erreur = True
+            return render(request, 'blog/admin/registernote.html', locals())
+    return render(request, 'blog/admin/registernote.html', locals())
+
+
+#--------- login ---------------
 def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -57,14 +85,13 @@ def logout_user(request):
     logout(request)
     return redirect(login_user)
 
-
-
 @login_required(login_url = '../login/')
 def main(request):
     return render(request, 'blog/main.html')
 
 @login_required(login_url = '../login/')
 def note_perso(request):
+    note = Note_User.objects.all().order_by('Semestre')
     inst = request.user.profil
     form = UserForm1(instance = inst)
     if request.method == "POST":
@@ -280,7 +307,9 @@ def metm1(request):
 def metm2(request):
     return render(request, 'blog/pa/met/metm2.html')
 
-@login_required(login_url = '../login/')
 def test(request):
-    return render(request, 'blog/test.html')
+    noty = Note_User.objects.all().order_by('Semestre')
+    if Note_User.objects.filter(Semestre = "S1"):
+        print(Note_User.Note)
+    return render(request, 'blog/test.html', locals())
 
