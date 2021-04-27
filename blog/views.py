@@ -57,14 +57,13 @@ def RegisterNote(request, pk):
     form = EnregistrerNote()
     if request.method == 'POST':
         form = EnregistrerNote(request.POST)
-        try:
-            if form.is_valid:
-                form.save()
-                success = True
-                return render(request, 'blog/admin/registernote.html', locals())
-        except:
-            erreur = True
+        if form.is_valid:
+            form.save()
+            success = True
             return render(request, 'blog/admin/registernote.html', locals())
+
+        # erreur = True
+        # return render(request, 'blog/admin/registernote.html', locals())
     return render(request, 'blog/admin/registernote.html', locals())
 
 

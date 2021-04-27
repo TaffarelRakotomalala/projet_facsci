@@ -1,5 +1,11 @@
 {% extends 'blog/signup.html' %}
 {% load static %}
+{% block 'css' %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.css' %}">
+    <!-- JS and CSS foreignkey -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
 {% block 'titre1' %} Note {% endblock %}
 {% block 'anim' %}
 <div class="anim">
@@ -50,4 +56,13 @@
     {% endfor %}
     <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px; margin-left: 5%;">
 </form>
+{% block 'script' %}
+    <script src="{% static './node_modules/jquery/dist/jquery.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(function(){
+            $("#sel").select2()
+        })
+    </script>
+{% endblock %}
 {% endblock %}

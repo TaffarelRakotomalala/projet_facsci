@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import *
 from django.forms import ModelForm
+from django_select2 import forms as s2forms
+
 
 attrEmail={'type':'email','class':'form-control','id':'email'}
 attrPassw={'type':'password','class':'form-control','id':'pwd'}
@@ -29,10 +31,6 @@ class reponseForm(forms.Form):
 	attrText['placeholder']='Votre reponse'
 	reponse = forms.CharField(widget=forms.Textarea(attrs=attrText))
 
-# class profilForm(forms.Form):
-# 	class Meta:
-# 		model = Profil
-# 		fields = ['parcour', 'avatar']
 
 
 class UserForm(UserCreationForm):
@@ -90,12 +88,12 @@ class EnregistrerNote(ModelForm):
 			'Nom_Mat':forms.TextInput(attrs={'placeholder':"Nom de la Matiere", 'class':'form-control'}),
 			'Note':forms.NumberInput(attrs={'placeholder':'Note de la matieres','class':'form-control'}),
 			'Poids_Mat':forms.NumberInput(attrs={'placeholder':'Poids de la matieres','class':'form-control'}),
+			"Us": forms.Select(attrs={'id':'sel','class':'form-control'})
 		}
 
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-		self.fields["Us"].widget.attrs['class'] = 'form-control'
-		self.fields["Us"].widget.attrs['placeholder'] = '{{pk}}'
+	
+
+
 
 
 
