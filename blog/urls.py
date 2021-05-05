@@ -1,14 +1,30 @@
 from django.urls import path
 from .views import *
+from django.contrib.auth import views as auth_view
 
 urlpatterns = [
     path('login/', login_user),
     path('logout', logout_user),
     path('signup/', signup),
     path('showuser/', ShowUser),
+    path('shownote/', Shownote),
     path('registernote/<str:pk>', RegisterNote, name ='registernote'),
+    path('editnote/<str:pk>', EditNote, name ='editnote'),
     path('actualite/', main),
+    path('publier/',publier, name='publier'),
     path('note_perso/', note_perso),
+    path('password_reset/', 
+        auth_view.PasswordResetView.as_view(template_name = 'blog/reset_pwd/reset_password.html'), 
+        name = "reset_password"),
+    path('password_reset_sent/', 
+        auth_view.PasswordResetDoneView.as_view(template_name = 'blog/reset_pwd/password_reset_sent.html'), 
+        name = "password_reset_done"),
+    path('reset/<uidb64>/<token>', 
+        auth_view.PasswordResetConfirmView.as_view(template_name = 'blog/reset_pwd/reset_password_form.html'),
+        name = "password_reset_confirm"),
+    path('password_complete/',
+        auth_view.PasswordResetCompleteView.as_view(template_name = 'blog/reset_pwd/password_complete.html'), 
+        name = "password_reset_complete"),
     path('forum/',afficherForum),
     path('forum/nouveau/',nouveauForum,name='forum'),
     path('forum/reponse/',reponseForum,name='reponse'),
@@ -54,5 +70,6 @@ urlpatterns = [
     path('metl3/', metl3),
     path('metm1/', metm1),
     path('metm2/', metm2),
+    path('fichiers/', fichiers, name='fichiers'),
     path('test/', test),
 ]

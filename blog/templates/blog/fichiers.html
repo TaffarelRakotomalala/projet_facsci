@@ -27,46 +27,13 @@
 	<div class="col-sm-3 text-secondary">
 		<h3 class="text-secondary">Importation des fichiers</h3>
 		<div id="form_importer">
-			<form>
-			<div class="form-group">
-			  <label for="sel1">Parcours</label>
-			  <select class="form-control" id="sel1">
-			    <option>Mathématique</option>
-			    <option>Physique</option>
-			    <option>Science de la vie</option>
-			    <option>EA2I</option>
-			  </select>
-			</div>
-			<div class="form-group">
-			  <label for="sel2">Niveau</label>
-			  <select class="form-control" id="sel1">
-			    <option>L1</option>
-			    <option>L2</option>
-			    <option>L3</option>
-			    <option>M1</option>
-			    <option>M2</option>
-			  </select>
-			</div>
-			<div class="form-group">
-			  <label for="sel3">Descriptions</label>
-			  <select class="form-control" id="sel1">
-			    <option>Cours</option>
-			    <option>TD</option>
-			    <option>TP</option>
-			  </select>
-			</div>
-			<div class="form-group">
-			  <label for="sel3">Nom de la matiere</label>
-			  <input type="text" name="matiere" class="form-control">
-			</div>
-        <div>
-				<input id="default-btn" type="file" hidden>
-				<button onclick=defaultBtnActive() id="custom-btn" style="width: 100%;" type="submit" class="btn btn-secondary btn-lg"><img style="margin-right: 10px" class="img-btn" src="{% static 'images/scroll_up_32px.png'%}">Choisir un fichier</button>
-				<div id="file-name" style="text-align: center;">Pas de ficier choisi !</div>
-			</div>
-			<button style="width: 100%;" type="submit" class="btn btn-secondary btn-lg">Poster</button>
-		</form>
-
+			<form action="{% url 'fichiers'%}" method="post" class="form" enctype="multipart/form-data">
+			    {% csrf_token %}
+			    {{ form.as_p }}
+	            <input style="width: 100%; margin-bottom: 5%;" type="text" class="form-control text-center" id="usr" value="Votre CE : {{u}}" disabled>
+			    <input style="width: 100%;margin-bottom: 5%;" class="btn btn-secondary btn-lg" type="submit" value="Poster"/>
+			</form>
+			<span>{{inst}}</span>
 		</div>
 
 	</div>
@@ -85,74 +52,33 @@
 			  </select>
 			  <button class="btn btn-secondary">Chercher</button></div>
 		</div>
-
 		<div  class="table table-responsive table-hovere table-striped">
-		<table style="width: 100%;" class="text-secondary">
-			<tr>
-				<th>Date</th>
-				<th>Niveau</th>
-				<th>Description</th>
-				<th>Matieres</th>
-				<th>Nom des fichiers</th>
-				<th>Action</th>
-			</tr>
-			<tr>
-				<td>14/02/2021</td>
-				<td>M2</td>
-				<td>Cours</td>
-				<td>Algo</td>
-				<td>Cours_algo1</td>
-				<td><a href="#"><img class="img-btn" src="{% static 'images/below_32px.png' %}"></a></td>
-			</tr>
-			<tr>
-				<td>14/02/2021</td>
-				<td>M1</td>
-				<td>Cours</td>
-				<td>Algo</td>
-				<td>Cours_algo1</td>
-				<td><a href="#"><img class="img-btn" src="{% static 'images/below_32px.png' %}"></a></td>
-			</tr>
-			<tr>
-				<td>14/02/2021</td>
-				<td>L2</td>
-				<td>Cours</td>
-				<td>Algo</td>
-				<td>Cours_algo1</td>
-				<td><a href="#"><img class="img-btn" src="{% static 'images/below_32px.png' %}"></a></td>
-			</tr>
-		</table>
-		</div>
+			<table style="width: 100%;" class="text-secondary">
+				<tr>
+					<th>Date</th>
+					<th>Niveau</th>
+					<th>Description</th>
+					<th>Matieres</th>
+					<th>Nom des fichiers</th>
+					<th>Télécharger</th>
+				</tr>
+				{% for i in f %}
+				<tr>
+					<td>{{i.date}}</td>
+					<td>{{i.niveau}}</td>
+					<td>{{i.desc}}</td>
+					<td>{{i.matiers}}</td>
+					<td>{{i.fichiers}}</td>
+					<td><a href="../static/images/avatar/{{i.fichiers}}"><img class="img-btn" src="{% static 'images/below_32px.png' %}"></a></td>
+				</tr>
+				{%endfor%}
+			</table>
+			</div>
 		</div>
 		
 		{%endblock%}
 	</div>
 
 </div>
-
-<script>
-	const fileName = document.querySelector(".file-name");
-	const defaultBtn = document.querySelector("#default-btn");
-	const customBtn = document.querySelector("#custom-btn");
-	const img = document.querySelector("#profiles");
-	function defaultBtnActive(){
-		defaultBtn.click();
-	}
-	defaultBtn.addEventListener("change", function(){
-		const file = this.files[0];
-		if (file){
-			const reader = new FileReader();
-			reader.onload = function(){
-			const result = reader.result;
-			img.src = result;
-		}
-		reader.readAsDataURL(file);
-		}
-		if (this.value){
-			let valueStore = this.value;
-			fileName.textContent = valueStore;
-		}
-	});
-
-</script>
 
 {% endblock %}

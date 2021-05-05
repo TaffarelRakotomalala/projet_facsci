@@ -80,7 +80,7 @@ class EnregistrerNote(ModelForm):
 	class Meta:
 		model = Note_User
 		fields = '__all__'
-		exclude = ['Validation_UE', 'Validation_Semestre']
+		exclude = ['Validation_UE', 'Validation_Semestre', 'Us']
 
 		widgets={
 			'Semestre':forms.Select(attrs={'class':'form-control'}),
@@ -88,10 +88,30 @@ class EnregistrerNote(ModelForm):
 			'Nom_Mat':forms.TextInput(attrs={'placeholder':"Nom de la Matiere", 'class':'form-control'}),
 			'Note':forms.NumberInput(attrs={'placeholder':'Note de la matieres','class':'form-control'}),
 			'Poids_Mat':forms.NumberInput(attrs={'placeholder':'Poids de la matieres','class':'form-control'}),
-			"Us": forms.Select(attrs={'id':'sel','class':'form-control'})
 		}
 
-	
+class publierForm(ModelForm):
+	class Meta:
+		model = Publication
+		fields = "__all__"
+
+		widgets = {
+			'pub_titre': forms.TextInput(attrs={'class':'form-control'}),
+			'pub_contenu': forms.Textarea(attrs={'class':'form-control'}),
+			'pub_image': forms.FileInput(attrs={'class':'form-control','multiple':'True'})
+		} 
+class fichierForm(ModelForm):
+	class Meta:
+		model = fichier
+		fields = "__all__"
+		exclude = ['util']
+		widgets = {
+			'mention': forms.Select(attrs={'class':'form-control'}),
+			'niveau': forms.Select(attrs={'class':'form-control'}),
+			'desc': forms.Select(attrs={'class':'form-control'}),
+			'matiers': forms.TextInput(attrs={'class':'form-control'}),
+			'fichiers': forms.FileInput(attrs={'class':'form-control'})
+		}
 
 
 

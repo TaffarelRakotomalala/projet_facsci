@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'django_select2',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +126,10 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/images/'
 MEDIA_ROOT = Path(BASE_DIR, 'blog/static/images/avatar')
 
+# ---- Reset password --------
+EMAIL_BACKENDS = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'taffarelrakotomalala@gmail.com'
+EMAIL_HOST_PASSWORD = 'sergioramos4 '

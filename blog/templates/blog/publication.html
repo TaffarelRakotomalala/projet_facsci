@@ -1,0 +1,28 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block 'titre1' %} Publication {% endblock %}
+{%block 'body'%}
+
+<!-- {% if envoi %}Votre message a bien été envoyé !{% endif %} -->
+
+
+
+
+<div style="width:70%;margin-left: 15%; margin-top: 10%;">
+  <div class="shadow-lg mx-lg-4">
+    <div class="container">
+	    <form action="{% url 'publier'%}" method="post" class="form" enctype="multipart/form-data">
+		    {% csrf_token %}
+		    {{ form.as_p }}
+		    <input style="margin-bottom: 5%;" class="btn-primary rounded" type="submit" value="Submit"/>
+		</form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{%endblock%}

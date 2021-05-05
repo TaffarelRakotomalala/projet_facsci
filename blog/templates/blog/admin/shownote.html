@@ -1,15 +1,13 @@
 {% extends 'blog/signup.html' %}
 {% load static %}
-{% block 'titre1'%} Utilisateur {% endblock %}
+{% block 'titre1'%} Les notes {% endblock %}
 {% block 'css' %} 
     <link rel="stylesheet" href="{% static 'css/note.css' %}">
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 {% endblock %}
-
 {% block 'anim' %}
 
 {% endblock %}
-
 {% block 'formulaire' %}
   <div style="display: inline;">
       <form class="form-inline float-right" method="POST">
@@ -23,16 +21,24 @@
         <thead>
           <tr>
             <th>Carte d'étudiant</th>
-            <th>Nom</th>
-            <th>Prénoms</th>
+            <th>Semestre</th>
+            <th>Unité d'enseignement</th>
+            <th>Matiere</th>
+            <th>Note</th>
+            <th>Poids</th>
+            <th>Modification</th>
           </tr>
         </thead>
-        {% for i in userliste %}
+        {% for i in user_notes %}
         <tbody>
           <tr>
-              <td><a href="{% url 'registernote' i.username %}">{{i.username}}</a></td>
-              <td>{{i.last_name}}</td>
-              <td>{{i.first_name}}</td>
+              <td>{{i.Us}}</a></td>
+              <td>{{i.Semestre}}</td>
+              <td>{{i.Nom_UE}}</td>
+              <td>{{i.Nom_Mat}}</td>
+              <td>{{i.Note}}</td>
+              <td>{{i.Poids_Mat}}</td>
+              <td><a href="{% url 'editnote' i.id %}"><img src="{% static 'images/edit_32px.png'%}" alt=""></a></td>
           </tr>
         </tbody>
         {% endfor %}

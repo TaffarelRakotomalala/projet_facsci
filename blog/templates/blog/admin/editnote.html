@@ -4,23 +4,13 @@
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.css' %}">
     <!-- JS and CSS foreignkey -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {% endblock %}
-{% block 'titre1' %} Registre Note {% endblock %}
+{% block 'titre1' %} Modification Note {% endblock %}
 {% block 'anim' %}
 
 {% endblock %}
 {% block 'message' %}
-    {% if success %}
-    <div class="alert alert-success">
-        <strong>Succès!</strong> Note Enregistrée! :)
-    </div>
-    {% endif %}
-    {% if erreur == True %}
-        <div class="alert alert-danger">
-            <strong>Erreur! </strong> Il y a un problème  :(
-        </div>
-    {%endif%}
+
 {% endblock %}
 
 {% block 'formulaire' %}
@@ -35,22 +25,11 @@
                     {{field}}
                 </div>
             {% endfor %}
-            <div class="col-md-6" style="margin-top: 1%;">
-                <label for="user">L'étudiant</label>
-                <input type="text" class="form-control" id="usr" value="{{pk}}" disabled>
-            </div>
             <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px; margin-left: 5%;">
         </form>
     </div>
-    <a href="../showuser" style="margin: 2%;">Liste des utilisateurs</a>
+    <a href="../shownote" style="margin: 2%;">Liste des notes</a>
 </div>
 {% block 'script' %}
-    <script src="{% static './node_modules/jquery/dist/jquery.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(function(){
-            $("#sel").select2()
-        })
-    </script>
 {% endblock %}
 {% endblock %}

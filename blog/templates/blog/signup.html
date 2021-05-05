@@ -9,9 +9,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.css' %}">
-    <!-- JS and CSS foreignkey -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}">
-    <script src="{% static 'js/select2.min.js' %}"></script> 
     <!-- ------------------ -->
     {% block 'css' %}<link rel="stylesheet" href="{% static 'css/signup.css' %}">{% endblock %}
     <link type="images/png" rel="shortcut icon" href="{% static 'images/FAC.PNG' %}">
@@ -67,9 +64,9 @@
             {%endif%}
 
         {% endblock %}
+        {% block 'formulaire' %}
         <div class="row" style="border: 1px solid black; border-radius: 10px; margin: 5%; background-color: white;">
             <div style="justify-content:center;display:flex; width: 90%; margin: 3%;">
-                {% block 'formulaire' %}
                 <form class="form-floating row" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
@@ -82,9 +79,9 @@
                     <br>
                     <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px; margin-left: 5%;">
                 </form>
-                {% endblock %}
             </div>
         </div>
+        {% endblock %}
     </div>
     {% block 'script' %}
     {% endblock %}

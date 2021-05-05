@@ -62,151 +62,87 @@
                 {% endfor %}
                 <input type="submit" value="Changer" class="btn btn-primary" style="margin-top:30px;">
             </form>
+            <br><br>
+            <div class="alert alert-info">
+                Cliquez <a href="{% url 'reset_password' %}"><strong>ici</strong></a> pour changer le mot de passe
+            </div>
         </div>
         <div id="menu1" class="container tab-pane fade"><br>
         <h3 class="text-secondary">Mes Notes</h3>
         <i class="text-secondary">Pour un smart phone: Glisser vers gauche pour voir d'autres notes</i>
+        <br>
+        <h5 class="text-secondary" style="text-decoration: underline;">Note Par matières</h5>
             <table class="table-responsive">
                 <thead>
-                    <tr>
-                        <th>Semestre</th>
-                        <th colspan="21">Unité d'enseignement</th>
-                        <th>Moyenne</th>
-                        <th>Validation</th>
-                    </tr>
+                <tr>
+                    <th>Semestre</th>
+                    <th>Unité d'enseignement</th>
+                    <th>Matiere</th>
+                    <th>Note</th>
+                    <th>Poids</th>
+                </tr>
                 </thead>
+                {% for i in noty %}
                 <tbody>
-                    <tr>
-                        <th rowspan="3">S7</th>
-                        <td colspan="3">Approximation</td>
-                        <td colspan="3">Théorie des jeux</td>
-                        <td colspan="3">Statistique</td>
-                        <td colspan="4">Informatique</td>
-                        <td colspan="4">Finance</td>
-                        <td colspan="4">Langue et Culture</td>
-                        <td rowspan="3">18</td>
-                        <td rowspan="3">Validé</td>
-                        <tr>
-                            <td>Approximation</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Théorie des jeux</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Statistique</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Java</td>
-                            <td>Graphe</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Marché Financières</td>
-                            <td>Finance d'Entreprise</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Anglais</td>
-                            <td>Droit</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>12</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                        </tr>
-                    </tr>
+                <tr>
+                    <td>{{i.Semestre}}</td>
+                    <td> {{i.Nom_UE}}</td>
+                    <td>{{i.Nom_Mat}}</td>
+                    <td>{{i.Note}}</td>
+                    <td>{{i.Poids_Mat}}</td>
+                </tr>
                 </tbody>
+                {% endfor %}
             </table>
-            <br>
-            <table class="table-responsive">
-                <thead>
-                    <tr>
-                        <th>Semestre</th>
-                        <th colspan="21">Unité d'enseignement</th>
-                        <th>Moyenne</th>
-                        <th>Validation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th rowspan="3">S7</th>
-                        <td colspan="3">Approximation</td>
-                        <td colspan="3">Théorie des jeux</td>
-                        <td colspan="3">Statistique</td>
-                        <td colspan="4">Informatique</td>
-                        <td colspan="4">Finance</td>
-                        <td colspan="4">Langue et Culture</td>
-                        <td rowspan="3">18</td>
-                        <td rowspan="3">Validé</td>
+            <br><br>
+            <div class="row;">
+                <h5 class="text-secondary" style="text-decoration: underline;">Moyenne par Unité d'enseignement</h5>
+                <div class="col">
+                    <table>
+                        <thead>
                         <tr>
-                            <td>Approximation</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Théorie des jeux</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Statistique</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Java</td>
-                            <td>Graphe</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Marché Financières</td>
-                            <td>Finance d'Entreprise</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
-                            <td>Anglais</td>
-                            <td>Droit</td>
-                            <td>moyenne</td>
-                            <td>Validation</td>
+                            <th>Semestre</th>
+                            <th>Unité d'enseignement</th>
+                            <th>Moyenne</th>
+                            <th>Validation_UE</th>
                         </tr>
+                        </thead>
+                        {% for res in resultat %}
+                        <tbody>
+                            <tr>
+                                {% for i in res %}
+                                <td>{{i}}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+                <br><br>
+                <h5 class="text-secondary" style="text-decoration: underline;">Moyenne Par Semestre</h5>
+                <div class="col">
+                    <table>
+                        <thead>
                         <tr>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>12</td>
-                            <td>14</td>
-                            <td>14</td>
-                            <td>14</td>
+                            <th>Semestre</th>
+                            <th>Unité d'enseignement</th>
+                            <th>Moyenne</th>
                         </tr>
-                    </tr>
-                </tbody>
-            </table>
+                        </thead>
+                        {% for res in resultat %}
+                        <tbody>
+                            <tr>
+                                {% for i in res %}
+                                <td>{{i}}</td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <br><br>
         </div>
-        <br><br>
         <div id="menu2" class="container tab-pane fade"><br>
         <h3 class="text-secondary">Mes fichiers</h3>
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>

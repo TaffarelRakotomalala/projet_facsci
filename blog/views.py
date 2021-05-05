@@ -44,27 +44,7 @@ def signup(request):
     return render(request, 'blog/signup.html', locals())
 
 
-#----------Pour l'admin ------------
-def ShowUser(request):
-    userliste = User.objects.filter(is_staff = False).order_by('username')
-    return render(request, "blog/admin/showuser.html", locals())
 
-#---------- Registre Note -----------
-def RegisterNote(request, pk):
-    erreur = False
-    success = False
-    #util = Note_User.objects.get(id = pk)
-    form = EnregistrerNote()
-    if request.method == 'POST':
-        form = EnregistrerNote(request.POST)
-        if form.is_valid:
-            form.save()
-            success = True
-            return render(request, 'blog/admin/registernote.html', locals())
-
-        # erreur = True
-        # return render(request, 'blog/admin/registernote.html', locals())
-    return render(request, 'blog/admin/registernote.html', locals())
 
 
 #--------- login ---------------
@@ -84,13 +64,104 @@ def logout_user(request):
     logout(request)
     return redirect(login_user)
 
+#----------Pour l'admin ------------
+# ---------- Liste des Utilisateurs
+@login_required(login_url = '../login/')
+def ShowUser(request):
+    if request.user.is_staff:
+        userliste = User.objects.filter(is_staff = False).order_by('username')
+        if request.method == "POST":
+            rech = request.POST['rech']
+            userliste = User.objects.filter(username__icontains = f"{rech}")
+            return render(request, "blog/admin/showuser.html", locals())
+        else:
+            return render(request, "blog/admin/showuser.html", locals())
+    else:
+        return redirect(main)
+# -----------------------------------
+
+#---------- Registre Note -----------
+@login_required(login_url = '../showuser/')
+def RegisterNote(request, pk):
+    if request.user.is_staff:
+        erreur = False
+        success = False
+        form = EnregistrerNote()
+        if request.method == 'POST':
+            note = Note_User()
+            note.Us = User.objects.get(username = pk)
+            form = EnregistrerNote(request.POST, instance = note)
+            try:
+                if form.is_valid:
+                    form.save()
+                    success = True
+                    return render(request, 'blog/admin/registernote.html', locals())
+            except:
+                erreur = True
+                return render(request, 'blog/admin/registernote.html', locals())
+        return render(request, 'blog/admin/registernote.html', locals())
+    else:
+        return redirect(main)
+# -----------------------------------
+
+# ------- Modification Note ------------
+@login_required(login_url = '../login/')
+def Shownote(request):
+    if request.user.is_staff:
+        user_notes = Note_User.objects.all().order_by('Us', 'Semestre')
+        if request.method == "POST":
+            rech = request.POST['rech']
+            user_notes = Note_User.objects.filter(Us__username__icontains = f"{rech}").order_by('Semestre')
+            return render(request, 'blog/admin/shownote.html', locals())
+        else:
+            return render(request, 'blog/admin/shownote.html', locals())
+    else:
+        return redirect(main)
+
+@login_required(login_url = '../login/')
+def EditNote(request, pk):
+    if request.user.is_staff:
+        erreur = False
+        success = False
+        note_user = Note_User.objects.get(id = pk)
+        form = EnregistrerNote(instance = note_user)
+        if request.method == 'POST':
+            form = EnregistrerNote(request.POST, instance = note_user)
+            if form.is_valid:
+                form.save()
+                return redirect(Shownote)
+        else:
+            return render(request, 'blog/admin/editnote.html', locals())
+    else:
+        return redirect(main)
+# ----------------------------------------------------------------
+
+
+# ------------------Actualité-----------------
 @login_required(login_url = '../login/')
 def main(request):
-    return render(request, 'blog/main.html')
+    publications = Publication.objects.all()
+    return render(request, 'blog/main.html', {'publications': publications})
+
+#-------- Publication ---------------
+@login_required(login_url = '../login/')
+def publier(request):
+    if request.user.is_staff:
+        form = publierForm()
+        publications = Publication.objects.all()
+        if request.method=='POST':
+            form = publierForm(request.POST or None, request.FILES or None)
+            if form.is_valid():
+                form.save()
+                return render(request,'blog/main.html', {'publications': publications})
+        return render(request, 'blog/publication.html', locals())
+    else:
+        return redirect(main)
+
 
 @login_required(login_url = '../login/')
 def note_perso(request):
-    note = Note_User.objects.all().order_by('Semestre')
+    util = request.user.username
     inst = request.user.profil
     form = UserForm1(instance = inst)
     if request.method == "POST":
@@ -98,6 +169,41 @@ def note_perso(request):
         if form.is_valid:
             form.save()
             return redirect(note_perso)
+    #affichage Note
+    # --------- Moyenne par UE -----------
+    N = ()
+    P = []
+    u_e = []
+    Moy_UE = 0
+    validation = "Non validé"
+    resultat = []
+    S = []
+    sem = Note_User.objects.filter(Us__username = util)
+    for s in sem:
+        if s.Semestre not in S:
+            S.append(s.Semestre)
+    for semestre in S:
+        ue = Note_User.objects.filter(Us__username = util, Semestre = semestre)
+        for i in ue:
+            if i.Nom_UE not in u_e:
+                u_e.append(i.Nom_UE)
+        for i in u_e:
+            u = Note_User.objects.filter(Nom_UE = i, Us__username = util, Semestre = semestre)
+            for j in u:
+                N = (i, j.Note, j.Poids_Mat)
+                P.append(N)
+
+            for k in range(len(P)):
+                if P[k][0] == i:
+                    Moy_UE += P[k][1]*P[k][2]
+                    if Moy_UE >=10:
+                        validation = "Validé"
+            resultat.append((semestre, i, f"{Moy_UE:.2f}", validation))
+            Moy_UE = 0
+            u_e = []
+            P = []
+            validation = "Non validé"
+    noty = Note_User.objects.filter(Us__username = util).order_by("Semestre")
     return render(request, 'blog/personnel/note.html', locals())
 
 @login_required(login_url = '../login/')
@@ -306,9 +412,22 @@ def metm1(request):
 def metm2(request):
     return render(request, 'blog/pa/met/metm2.html')
 
-def test(request):
-    noty = Note_User.objects.all().order_by('Semestre')
-    if Note_User.objects.filter(Semestre = "S1"):
-        print(Note_User.Note)
-    return render(request, 'blog/test.html', locals())
+@login_required(login_url = '../login/')
+def fichiers(request):
+    u = request.user.username
+    f = fichier.objects.all()
+    form = fichierForm()
+    if request.method=='POST':
+        fch = fichier()
+        fch.util = User.objects.get(username = u)
+        form = fichierForm(request.POST, request.FILES, instance = fch)
+        if form.is_valid():
+            form.save()
+            return render(request,'blog/fichiers.html', locals())
+    return render(request,'blog/fichiers.html', locals())
 
+@login_required(login_url = '../login/')
+def test(request):
+    util = request.user.username
+    noty = Note_User.objects.filter(Us__username__contains = util).order_by("Semestre")
+    return render(request, 'blog/test.html', locals())
