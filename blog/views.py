@@ -83,7 +83,7 @@ def ShowUser(request):
 #---------- Registre Note -----------
 @login_required(login_url = '../showuser/')
 def RegisterNote(request, pk):
-    if request.user.is_staff:
+    if request.user.is_superuser:
         erreur = False
         success = False
         form = EnregistrerNote()
@@ -101,7 +101,7 @@ def RegisterNote(request, pk):
                 return render(request, 'blog/admin/registernote.html', locals())
         return render(request, 'blog/admin/registernote.html', locals())
     else:
-        return redirect(main)
+        return redirect(ShowUser)
 # -----------------------------------
 
 # ------- Modification Note ------------
@@ -120,7 +120,7 @@ def Shownote(request):
 
 @login_required(login_url = '../login/')
 def EditNote(request, pk):
-    if request.user.is_staff:
+    if request.user.is_superuser:
         erreur = False
         success = False
         note_user = Note_User.objects.get(id = pk)
@@ -133,7 +133,7 @@ def EditNote(request, pk):
         else:
             return render(request, 'blog/admin/editnote.html', locals())
     else:
-        return redirect(main)
+        return redirect(Shownote)
 # ----------------------------------------------------------------
 
 

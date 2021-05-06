@@ -21,7 +21,7 @@
 	border-radius: 50%;
 }
 </style>
-<h5 style="margin-top:100px"><span><img src="{%static 'images/file_32px.png' %}" alt="perso"></span><strong>FICHIERS</strong></h5>
+<h5><span><img src="{%static 'images/file_32px.png' %}" alt="perso"></span><strong>FICHIERS</strong></h5>
 <p><i>Liste des fichiers</i></p>
 <div style="margin-top: 6px;" class="row">
 	<div class="col-sm-3 text-secondary">
@@ -35,44 +35,43 @@
 			</form>
 			<span>{{inst}}</span>
 		</div>
-
 	</div>
 
 	<div class="col-sm-9">
 		{%block 'droit'%}
 		<div class="container" style="margin-top:15px;">
-		<div class="container" style="margin-bottom:10px">
-			<h3 style="text-align: center;" class="text-secondary">Liste de tous les fichiers</h3>
-			<div style="text-align: center;"><input type="text" name="recherche">
-			<select class="form" id="triage">
-			    <option>Date</option>
-			    <option>Description</option>
-			    <option>Niveau</option>
-			    <option>Matiere</option>
-			  </select>
-			  <button class="btn btn-secondary">Chercher</button></div>
-		</div>
-		<div  class="table table-responsive table-hovere table-striped">
-			<table style="width: 100%;" class="text-secondary">
-				<tr>
-					<th>Date</th>
-					<th>Niveau</th>
-					<th>Description</th>
-					<th>Matieres</th>
-					<th>Nom des fichiers</th>
-					<th>Télécharger</th>
-				</tr>
-				{% for i in f %}
-				<tr>
-					<td>{{i.date}}</td>
-					<td>{{i.niveau}}</td>
-					<td>{{i.desc}}</td>
-					<td>{{i.matiers}}</td>
-					<td>{{i.fichiers}}</td>
-					<td><a href="../static/images/avatar/{{i.fichiers}}"><img class="img-btn" src="{% static 'images/below_32px.png' %}"></a></td>
-				</tr>
-				{%endfor%}
-			</table>
+			<div class="container" style="margin-bottom:10px">
+				<h3 style="text-align: center;" class="text-secondary">Liste de tous les fichiers</h3>
+				<div style="text-align: center;"><input type="text" name="recherche">
+				<select class="form" id="triage">
+					<option>Date</option>
+					<option>Description</option>
+					<option>Niveau</option>
+					<option>Matiere</option>
+				</select>
+				<button class="btn btn-secondary">Chercher</button></div>
+			</div>
+			<div  class="table table-responsive table-hovere table-striped">
+				<table style="width: 100%;" class="text-secondary">
+					<tr>
+						<th>Date</th>
+						<th>Niveau</th>
+						<th>Description</th>
+						<th>Matieres</th>
+						<th>Nom des fichiers</th>
+						<th>Télécharger</th>
+					</tr>
+					{% for i in f %}
+					<tr>
+						<td>{{i.date}}</td>
+						<td>{{i.niveau}}</td>
+						<td>{{i.desc}}</td>
+						<td>{{i.matiers}}</td>
+						<td>{{i.fichiers}}</td>
+						<td><a href="../static/images/avatar/{{i.fichiers}}"><img class="img-btn" src="{% static 'images/below_32px.png' %}"></a></td>
+					</tr>
+					{%endfor%}
+				</table>
 			</div>
 		</div>
 		

@@ -17,10 +17,16 @@
   {% endblock %}
   <body style="background-image: url('../static/images/SpringBreak-CSTM.jpg');">
     {% block 'corps' %}
+    {% block 'navbar' %}
+        
+    {% endblock %}
+    <main role="main" class="container">
     <div class="container">
+        {% block 'imglogo' %}
         <div class="text-center">
             <img src="{% static 'images/FAC.PNG' %}" alt="Logo Sciences" class="rounded-circle" style="width: 64px; height: 64px; margin-top: 2%;">
         </div>
+        {% endblock %}
         {% block 'anim' %}
         <div class="anim" style="margin-bottom: 10%;">
             <span><img src="{% static 'images/inscription_32px.png' %}"></span>
@@ -84,7 +90,11 @@
         {% endblock %}
     </div>
     {% block 'script' %}
+    <script src="{% static './node_modules/jquery/dist/jquery.js' %}"></script>
+    <script src="{% static './node_modules/popper.js/dist/umd/popper.js' %}"></script>
+    <script src="{% static './node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
     {% endblock %}
+    </main>
     {% endblock %}
   </body>
 </html>

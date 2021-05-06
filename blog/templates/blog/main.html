@@ -15,8 +15,8 @@
     {% block 'style' %}
     {% endblock %}
   </head>
-  <body>
-    <div class="container-fluid">
+  <body style="padding-top: 70px; background-color: rgba(0,0, 0, 0.05);">
+    <div class="container-fluid" style="margin-top:20px">
       <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
           <div id="box1">
               <div>
@@ -54,9 +54,6 @@
             <li class="nav-item">
               <a class="nav-link" href="../fichiers">Fichiers</a>
             </li>
-            <!-- <li class="nav-item" href="#" data-toggle="tooltip" data-placement="bottom" title="Déconnecter">
-              <img src="{% static 'images/shutdown_32px.png' %}">
-            </li> -->
           </ul>
         </div>
         <a href="../logout" data-toggle="tooltip" data-placement="bottom" title="Déconnecter"><img src="{% static 'images/shutdown_32px.png' %}"></a>
@@ -65,27 +62,33 @@
 {% endblock %}
 
 {% block 'body' %}
-<div style="width:70%;margin-left: 15%; margin-top: 10%;">
+<h5><span><img src="{%static 'images/news_32px.png' %}" alt="perso"></span><strong> ACTUALITE</strong></h5>
+<p><i>Les nouvelles à la faculté des sciences</i></p>
+<div class="container-fluid " style="width: 100%;">
   {% for publication in publications %}
-    <div class="shadow-lg mx-lg-4">
-      <div class="container">
+      <div class="container shadow-lg">
       
-        <h5 class="text-center">{{ publication.pub_titre.capitalize }}</h5>
-        <hr>
-        <!-- <h2>Contenu :</h2> -->
-        {%if publication.pub_contenu %}
-        <div>{{ publication.pub_contenu.capitalize}}</div><hr>
-        {% endif %}
         <div>
-          {%if publication.pub_image %}
-          <img style="width: 100%;height: 100%;" src="{{ publication.pub_image.url }}"/>
-          {% endif %}
-          
+          <h5 class="text-center">{{ publication.pub_titre.capitalize }}</h5>
         </div>
-        <i>Publier le , <g> {{publication.pub_date}} </g></i>
+        <hr>
+
+        {%if publication.pub_contenu %}
+          <div>
+            <p>{{ publication.pub_contenu.capitalize}}</p>
+          </div>
+          <hr>
+        {% endif %}
+        {%if publication.pub_image %}
+          <div class="text-center">
+            <img style="width: 70%;height: 70%;" src="{{ publication.pub_image.url }}"/><hr>
+          </div>
+        {% endif %} 
+        <div>
+          <i>Publier le , <g> {{publication.pub_date}} </g></i>
+        </div> 
+        <hr>
     </div>
-    <hr>
-  </div>
   {% endfor %}
 
 </div>
@@ -102,7 +105,7 @@
         })
       </script>
     {% endblock %}
-    </div>
+</div>
 {% block 'footer' %}
 <br><br><br>
 <footer class="py-1 bg-dark">

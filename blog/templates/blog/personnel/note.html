@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/note.css' %}">
 {% endblock %}
 {% block 'body' %}
-<h5 style="margin-top:100px"><span><img src="{%static 'images/user_shield_32px.png' %}" alt="perso"></span><strong>PERSONNEL</strong></h5>
+<h5><span><img src="{%static 'images/user_shield_32px.png' %}" alt="perso"></span><strong>PERSONNEL</strong></h5>
 <p><i>Votre Blog Personnel</i></p>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="bg-secondary" style="margin-top: 1%">
@@ -26,6 +26,9 @@
     <div class="tab-content">
         <div id="home" class="container tab-pane active"><br>
             <h3 class="text-secondary">Mon Profil</h3>
+            <div class="alert alert-info">
+                Cliquez <a href="{% url 'reset_password' %}"><strong>ici</strong></a> pour changer le mot de passe
+            </div>
             <div class="alert alert-info">
                 <strong>N.B!</strong> Vous ne pouvez changer que de l'avatar.
             </div>
@@ -62,10 +65,6 @@
                 {% endfor %}
                 <input type="submit" value="Changer" class="btn btn-primary" style="margin-top:30px;">
             </form>
-            <br><br>
-            <div class="alert alert-info">
-                Cliquez <a href="{% url 'reset_password' %}"><strong>ici</strong></a> pour changer le mot de passe
-            </div>
         </div>
         <div id="menu1" class="container tab-pane fade"><br>
         <h3 class="text-secondary">Mes Notes</h3>

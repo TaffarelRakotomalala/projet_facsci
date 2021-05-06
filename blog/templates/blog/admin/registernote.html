@@ -7,6 +7,33 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {% endblock %}
 {% block 'titre1' %} Registre Note {% endblock %}
+{% block 'navbar' %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="{% static 'images/FAC.PNG' %}" alt="Logo Sciences" class="rounded-circle" style="width: 50px; height: 50px;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="../showuser">Liste des notes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout">Déconnexion</a>
+            </li>
+        </ul>
+        <div class="form-inline mt-2 mt-md-0 text-white" style="margin-left: 1%;">
+            <span>
+                {{user.username}}
+                <img src="{{request.user.profil.avatar.url}}"  style="width: 50px; height: 50px;" class="rounded-circle">
+            </span>
+        </div>
+    </div>
+  </nav>
+{% endblock %}
+
+{% block 'imglogo' %}
+{% endblock %}
 {% block 'anim' %}
 
 {% endblock %}
@@ -42,7 +69,6 @@
             <input type="submit" value="V a l i d e r" class="btn btn-primary" style="margin-top:30px; margin-left: 5%;">
         </form>
     </div>
-    <a href="../showuser" style="margin: 2%;">Liste des utilisateurs</a>
 </div>
 {% block 'script' %}
     <script src="{% static './node_modules/jquery/dist/jquery.js' %}"></script>
